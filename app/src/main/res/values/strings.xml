@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">My Event App</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login_button">LOGIN</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up">Don\'t have an account?</string>
+    <string name="or_sign_up_with">Or sign up with</string>
+    <string name="google">Google</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="registration">Registration</string>
+    <string name="email">Email</string>
+    <string name="inputEmail">Email</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="events">Events</string>
+    <string name="use_for_adding_events">Use for adding events</string>
+    <string name="no_event_exist">No Event exist</string>
+    <string name="event_time">Event Time:</string>
+    <string name="event_date">Event Date:</string>
+    <string name="events_details">Events Details</string>
+    <string name="event_name">Event Name:</string>
+    <string name="add_event">Add Event</string>
+    <string name="already_have_an_account">Already Have an Account?</string>
+    <string name="notification">Notification</string>
+    <string name="add_event_button">Add Event Button</string>
+</resources>
