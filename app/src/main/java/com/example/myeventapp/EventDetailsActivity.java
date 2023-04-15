@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     SwitchCompat notificationSwitch;
     DatabaseReference myRef;
+
+    boolean switchOnOff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +37,32 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         textEventName = findViewById(R.id.inputEventName);
         dateEvent = findViewById(R.id.inputEventDate);
-        timeEvent = findViewById(R.id.editTextTime);
+        timeEvent = findViewById(R.id.inputEventTime);
         addEventBtn = findViewById(R.id.addEventDetailsBtn);
         notificationSwitch = findViewById(R.id.notificationSwitch);
         myRef = FirebaseDatabase.getInstance().getReference();
+        switchOnOff = false;
+        notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    switchOnOff = true;
+                }
+            }
+        });
         addEventBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
                 InsertEvent();
-                //startActivity(new Intent(EventDetailsActivity.this, EventActivity.class));
                 startActivity(new Intent(EventDetailsActivity.this, EventActivity.class));
+//                if (switchOnOff) {
+//                    Intent sendNotificationMsg = new Intent(Intent.ACTION_VIEW);
+//                    sendNotificationMsg.putExtra("sms_body", "default content");
+//                    sendNotificationMsg.setType("vnd.android-dir/mms-sms");
+//                    startActivity(sendNotificationMsg);
+//                }
             }
         });
     }

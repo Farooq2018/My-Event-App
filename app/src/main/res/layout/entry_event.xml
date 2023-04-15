@@ -77,6 +77,30 @@
                 android:textColor="@color/black"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:id="@+id/editEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:textSize="15sp"
+                app:icon="@drawable/edit_icon"/>
+            <Button
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:id="@+id/deleteEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:textSize="15sp"
+                app:icon="@drawable/delete_icon"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

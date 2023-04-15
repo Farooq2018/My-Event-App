@@ -19,12 +19,19 @@
     <string name="events">Events</string>
     <string name="use_for_adding_events">Use for adding events</string>
     <string name="no_event_exist">No Event exist</string>
-    <string name="event_time">Event Time:</string>
-    <string name="event_date">Event Date:</string>
+    <string name="event_time">Event Time: </string>
+    <string name="event_date">Event Date: </string>
     <string name="events_details">Events Details</string>
-    <string name="event_name">Event Name:</string>
+    <string name="event_name">Event Name: </string>
     <string name="add_event">Add Event</string>
     <string name="already_have_an_account">Already Have an Account?</string>
     <string name="notification">Notification</string>
     <string name="add_event_button">Add Event Button</string>
+    <string name="logout">Logout</string>
+    <string name="delete_the_event">Delete the Event</string>
+    <string name="edit_the_event">Edit the Event</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="edit_event_details">Edit Event Details</string>
+    <string name="update">Update</string>
 </resources>
