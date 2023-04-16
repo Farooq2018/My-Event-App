@@ -24,6 +24,7 @@ import com.orhanobut.dialogplus.ViewHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     Context context;
@@ -84,25 +85,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                         Map<String, Object> eventValues = updatedEvent.eventMap();
 
 
-//                        Map<String, Object> childUpdates = new HashMap<>();
-//                        childUpdates.put(key, eventValues);
-//                        databaseReference.updateChildren(childUpdates)
-//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void unused) {
-//                                        Toast.makeText(holder.eventName.getContext(), "Event Details Updated Successfully ", Toast.LENGTH_SHORT).show();
-//                                        dialogPlus.dismiss();
-//                                    }
-//                                })
-//                                .addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(holder.eventName.getContext(), "Failed to update event details", Toast.LENGTH_SHORT).show();
-//                                        dialogPlus.dismiss();
-//                                    }
-//                                });
-
-
 
                         databaseReference.child("events")
                                 .child(key)
@@ -137,7 +119,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         //FIXME:Need to work on
-                        databaseReference.child("events");
+                        databaseReference.child("events").removeValue()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(holder.eventName.getContext(), "Event Details Deleted Successfully ", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(holder.eventName.getContext(), "Failed to delete event details", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                });
                     }
                 });
 

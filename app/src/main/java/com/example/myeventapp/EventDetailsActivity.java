@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -22,14 +26,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+
 public class EventDetailsActivity extends AppCompatActivity {
-    EditText textEventName, dateEvent, timeEvent;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+    EditText textEventName, dateEvent, timeEvent, phoneNum;
     Button addEventBtn;
 
     SwitchCompat notificationSwitch;
     DatabaseReference myRef;
 
     boolean switchOnOff;
+
+    String phoneNumber, message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         dateEvent = findViewById(R.id.inputEventDate);
         timeEvent = findViewById(R.id.inputEventTime);
         addEventBtn = findViewById(R.id.addEventDetailsBtn);
+        phoneNum = findViewById(R.id.inputPhoneNumber);
         notificationSwitch = findViewById(R.id.notificationSwitch);
         myRef = FirebaseDatabase.getInstance().getReference();
         switchOnOff = false;
@@ -54,15 +63,9 @@ public class EventDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
                 InsertEvent();
+                sendMessage();
                 startActivity(new Intent(EventDetailsActivity.this, EventActivity.class));
-//                if (switchOnOff) {
-//                    Intent sendNotificationMsg = new Intent(Intent.ACTION_VIEW);
-//                    sendNotificationMsg.putExtra("sms_body", "default content");
-//                    sendNotificationMsg.setType("vnd.android-dir/mms-sms");
-//                    startActivity(sendNotificationMsg);
-//                }
             }
         });
     }
@@ -87,4 +90,46 @@ public class EventDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void sendMessage() {
+        if (switchOnOff) {
+            phoneNumber = phoneNum.getText().toString();
+            message = "Below Event has been edit to your list:\n" +
+                    "Event Name:\t" + textEventName.getText().toString() +
+                    "Event Date:\t" + dateEvent.getText().toString() +
+                    "Event Time:\t" + timeEvent.getText().toString();
+            if (ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        android.Manifest.permission.SEND_SMS)) {
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{android.Manifest.permission.SEND_SMS},
+                            MY_PERMISSIONS_REQUEST_SEND_SMS);
+                }
+            }
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+                    Toast.makeText(EventDetailsActivity.this, "SMS sent.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(EventDetailsActivity.this,
+                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
+
+    }
+
 }

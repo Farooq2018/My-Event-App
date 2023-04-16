@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/textEventName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textEventName"
@@ -77,6 +78,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="date"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/textEventDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textEventDate"
@@ -89,6 +91,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="time"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/textEventTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textEventTime"
@@ -99,12 +102,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="@string/notification"
+        android:text="@string/sms_alert"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/addEventDetailsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.81" />
+
+    <EditText
+        android:id="@+id/inputPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/notificationSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/notificationSwitch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notificationSwitch" />
 
     <Button
         android:id="@+id/addEventDetailsBtn"

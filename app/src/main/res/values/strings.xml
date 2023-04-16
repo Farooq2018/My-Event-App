@@ -25,7 +25,6 @@
     <string name="event_name">Event Name: </string>
     <string name="add_event">Add Event</string>
     <string name="already_have_an_account">Already Have an Account?</string>
-    <string name="notification">Notification</string>
     <string name="add_event_button">Add Event Button</string>
     <string name="logout">Logout</string>
     <string name="delete_the_event">Delete the Event</string>
@@ -34,4 +33,5 @@
     <string name="delete">Delete</string>
     <string name="edit_event_details">Edit Event Details</string>
     <string name="update">Update</string>
+    <string name="sms_alert">SMS Alert</string>
 </resources>
